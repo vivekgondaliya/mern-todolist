@@ -15,7 +15,7 @@ function App() {
 				<div className="todo is-complete">
 					<div className="checkbox"></div>
 
-					<div className="text">Code and Coffee</div>
+					<div className="text">Call Dad - </div>
 					
 					<div className="delete-todo">x</div>
 				</div>
