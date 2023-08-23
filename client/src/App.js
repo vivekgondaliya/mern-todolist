@@ -21,7 +21,7 @@ function App() {
 
 	//TODO: COMPLETE TODO DOES NOT WORK WITH PUT
 	const completeTodo = async id => {
-		const data = await fetch(API_BASE + '/todo/complete/' + id)
+		const data = await fetch(API_BASE + '/todo/complete/' + id, {method : "PUT"})
 			.then(res => res.json());
 
 		setTodos( todos  => todos.map(todo => {
@@ -30,6 +30,13 @@ function App() {
 			}
 			return todo;
 		}));
+	}
+
+	const deleteTodo = async id => {
+		const data = await fetch(API_BASE + '/todo/delete/' + id , {method : "DELETE"})
+			.then(res => res.json());
+
+		setTodos(todos => todos.filter(todo => todo._id !== data._id));
 	}
 
 	return (
@@ -42,13 +49,14 @@ function App() {
 					todos.map(todo => (
 						<div className={ "todo " + (todo.complete ? "is-complete" : "")} 
 							key={todo._id}
-							onClick={() => completeTodo(todo._id)}
 							>
-							<div className="checkbox"></div>
+							<div className="checkbox" 
+								onClick={() => completeTodo(todo._id)}>
+							</div>
 
 							<div className="text">{todo.text}</div>
 							
-							<div className="delete-todo">x</div>
+							<div className="delete-todo" onClick={() => deleteTodo(todo._id)}>x</div>
 						</div>
 					))
 				}
