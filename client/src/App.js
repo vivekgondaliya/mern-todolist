@@ -25,20 +25,17 @@ function App() {
 			<h4>Your Tasks</h4>
 
 			<div className="todos">
-				<div className="todo">
-					<div className="checkbox"></div>
+				{
+					todos.map(todo => (
+						<div className="todo" key={todo._id}>
+							<div className="checkbox"></div>
 
-					<div className="text">Code and Coffee</div>
-					
-					<div className="delete-todo">x</div>
-				</div>
-				<div className="todo is-complete">
-					<div className="checkbox"></div>
-
-					<div className="text">Call Dad - </div>
-					
-					<div className="delete-todo">x</div>
-				</div>
+							<div className="text">{todo.text}</div>
+							
+							<div className="delete-todo">x</div>
+						</div>
+					))
+				}
 			</div>
 		</div>
 	); 
